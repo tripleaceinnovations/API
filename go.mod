@@ -1,3 +1,3 @@
-module github.com/tripleaceinnovations/learngo
+module github.com/tripleaceinnovations/api
 
 go 1.12
