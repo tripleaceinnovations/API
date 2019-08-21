@@ -7,7 +7,7 @@ import (
 	"regexp"
 	"strconv"
 
-	"github.com/tripleaceinnovations/learngo/models"
+	"github.com/tripleaceinnovations/api/models"
 )
 
 type messageController struct { //custome type that I can add a method to

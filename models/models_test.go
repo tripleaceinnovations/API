@@ -3,7 +3,7 @@ package models
 import (
 	"testing"
 
-	"github.com/tripleaceinnovations/learngo/models"
+	"github.com/tripleaceinnovations/api/models"
 )
 
 //Test IsPalindrome function
