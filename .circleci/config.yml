@@ -29,9 +29,9 @@ jobs:
       - run: pwd
       - run: mkdir -p $TEST_RESULTS # create the test results directory
       - run: pwd
-      - run: 
-          name: Get Dependency
-          command: go get github.com/jstemmer/go-junit-report
+      #- run: 
+          #name: Get Dependency
+          #command: go get github.com/jstemmer/go-junit-report
       - run: ls -latr
       # specify any bash command here prefixed with `run: `
       #- run: go get -v -t -d ./...
@@ -39,6 +39,6 @@ jobs:
           name: Run unit tests
           command: |
             cd models
-            go test -v models_test.go models.go
-            trap "go-junit-report <${TEST_RESULTS}/go-test.out > ${TEST_RESULTS}/go-test-report.xml" EXIT
-            make test | tee ${TEST_RESULTS}/go-test.out
+            go test -v
+            #trap "go-junit-report <${TEST_RESULTS}/go-test.out > ${TEST_RESULTS}/go-test-report.xml" EXIT
+            # make test | tee ${TEST_RESULTS}/go-test.out
