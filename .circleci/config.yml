@@ -17,7 +17,7 @@ jobs:
     #### expecting it in the form of
     ####   /go/src/github.com/circleci/go-tool
     ####   /go/src/bitbucket.org/circleci/go-tool
-    working_directory: /go/src/github.com/tripleaceinnovations/api/models
+    working_directory: /go/src/github.com/tripleaceinnovations/api/
     
     parallelism: 2
 
@@ -34,4 +34,6 @@ jobs:
       #- run: go get -v -t -d ./...
       - run: 
           name: Run unit tests
-          command: go test -v models_test.go models.go
+          command: |
+            cd models
+            go test -v models_test.go models.go
