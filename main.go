@@ -3,7 +3,7 @@ package main
 import (
 	"net/http"
 
-	"github.com/tripleaceinnovations/learngo/controllers"
+	"github.com/tripleaceinnovations/api/controllers"
 	//"fmt"
 	//"github.com/tripleaceinnovations/learngo/models"
 )
