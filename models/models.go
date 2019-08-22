@@ -26,10 +26,14 @@ func AddMessage(p Phrase) (Phrase, error) {
 		return Phrase{}, errors.New("New message must not include ID in the request")
 	}
 	p.ID = nextID
-	p.IsMessagePalindrome = IsPalindrome(p.Message)
-	nextID++
-	phrases = append(phrases, &p)
-	return p, nil
+	if len(p.Message) != 0 {
+		p.IsMessagePalindrome = IsPalindrome(p.Message)
+		nextID++
+		phrases = append(phrases, &p)
+		return p, nil
+	} else {
+		return Phrase{}, errors.New("New message cannot be empty")
+	}
 }
 
 func GetMessageByID(id int) (Phrase, error) {
@@ -46,9 +50,13 @@ func GetMessageByID(id int) (Phrase, error) {
 func UpdateMessage(p Phrase) (Phrase, error) {
 	for i, candidate := range phrases {
 		if candidate.ID == p.ID {
-			p.IsMessagePalindrome = IsPalindrome(p.Message)
-			phrases[i] = &p
-			return p, nil
+			if len(p.Message) != 0 {
+				p.IsMessagePalindrome = IsPalindrome(p.Message)
+				phrases[i] = &p
+				return p, nil
+			} else {
+				return Phrase{}, errors.New("Message to be updated cannot be empty")
+			}
 		}
 	}
 	return Phrase{}, fmt.Errorf("Message with ID '%v' not found", p.ID)

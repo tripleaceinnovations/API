@@ -2,25 +2,13 @@ package models
 
 import (
 	"testing"
-
-	"github.com/tripleaceinnovations/api/models"
+	//"github.com/tripleaceinnovations/learngo/models"
 )
 
-//Test IsPalindrome function
-func testIsPalindromeEmptyArg(t *testing.T) {
-	//test for empty argument
-	emptyResult := models.IsPalindrome("")
-
-	if emptyResult != false {
-		t.Errorf("IsPalindrome function failed, expected `%v`, got `%v`", "false", emptyResult)
-	} else {
-		t.Logf("IsPalindrome function success, expected `%v`, got `%v`", "false", emptyResult)
-	}
-}
-
 //test for valid postive arguments
-func testIsPalindromeValidPosArg(t *testing.T) {
-	postiveresult := models.IsPalindrome("level")
+func TestIsPalindromeValidPosArg(t *testing.T) {
+	//postiveresult := models.IsPalindrome("level")
+	postiveresult := IsPalindrome("level")
 
 	if postiveresult != true {
 		t.Errorf("IsPalindrome function failed, expected `%v`, got `%v`", "true", postiveresult)
@@ -31,8 +19,9 @@ func testIsPalindromeValidPosArg(t *testing.T) {
 }
 
 //test for valid negative arguments
-func testIsPalindromeValidNegArg(t *testing.T) {
-	negativeresult := models.IsPalindrome("bash")
+func TestIsPalindromeValidNegArg(t *testing.T) {
+	//negativeresult := models.IsPalindrome("test")
+	negativeresult := IsPalindrome("test")
 
 	if negativeresult != false {
 		t.Errorf("IsPalindrome function failed, expected `%v`, got `%v`", "false", negativeresult)
