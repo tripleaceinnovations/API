@@ -56,7 +56,7 @@ For an easy understanding, use the structure below for every resource:
 
 |Resource | GET | POST | PUT | DELETE |
 |:---:|:---:|:---:|:---:|:---:|
-|/messages | Returns a list of messages | Create a new message | Update of cars | Delete all messages
+|/messages | Returns a list of messages | Create a new message | Method not allowed (405) | Delete all messages
 | /messages/2 | Returns a specific message | Method not allowed (405) |Updates a specific message | Deletes a specific message
 
 
@@ -64,14 +64,15 @@ For an easy understanding, use the structure below for every resource:
 
 ### 1. View All Messages
 
-- **Endpoint Name** - `Index`      <br>
+- **Method Name** - `GetMessages`      <br>
 - **Method** - `GET`               <br>
 - **URL Pattern** - `/api/v1/messages`            <br>
 - **Usage** 
-    - Open BASE_URL in browser
-    - **Terminal/CURL**
-    ```sh
-    curl -X GET BASE_URL
+    - **POSTMAN**
+    ```
+    URL: http://localhost:3000/api/v1/messages
+    Request: Not required
+    Response: [{"ID":1,"Message":"jaga","IsMessagePalindrome":false}, {"ID":2,"Message":"level","IsMessagePalindrome":true}]}
     ```
 - **Expected Response** - JSON containing all the messages <br>
 - **Example**
@@ -79,30 +80,31 @@ For an easy understanding, use the structure below for every resource:
 
 ### 2. View Messages by ID
 
-- **Endpoint Name** - `GetMessageByID`    <br>
+- **Method Name** - `GetMessageByID`    <br>
 - **Method** - `GET`                  <br>
 - **URL Pattern** - `/api/v1/messages/{id}`  <br>
-- **Usage**
-    - Open BASE_URL/{id} in browser
-    - **Terminal/CURL**
+- **Usage** - CURL OR POSTMAN
+    - **POSTMAN**
 ```
-curl -X GET BASE_URL/products/{id} 
+ URL: http://localhost:4000/api/v1/messages/2
+ Request: {"ID":2, "Message":"level"}
+ Response: {"ID":2,"Message":"level","IsMessagePalindrome":true}
 ```
-- **Expected Response** - JSON containing message that has the {id} provided
+- **Expected Response** - JSON containing message based on the {id} provided
 - **Example**
 ![Screenshot](/screenshots/GetProduct-Request.png)
 
 ### 3. Update Message
 
-- **Endpoint Name** - `UpdateMessage`  <br>
+- **Method Name** - `UpdateMessage`  <br>
 - **Method** - `PUT`                   <br>
 - **URL Pattern** - `/api/v1/messages/{id}`  <br>
-- **Usage** - Browser OR curl        
-- **BROWSER**
-    - Open BASE_URL/Search/{query} in browser
-    - **Terminal/CURL**
-    ```sh
-    curl -X PUT BASE_URL/Search/{query}
+- **Usage** - CURL OR POSTMAN        
+    - **POSTMAN**
+    ```
+    URL: http://localhost:4000/api/v1/messages/2
+    Request: {"ID":2, "Message":"level"}
+    Response: {"ID":2,"Message":"level","IsMessagePalindrome":true}
     ```
 - **Expected Response** - JSON containing message matching the update value and check if the message is palindrome <br>
 - **Example**
@@ -110,15 +112,33 @@ curl -X GET BASE_URL/products/{id}
 
 ### 4. Add Message
 
-- **Endpoint Name** - `AddMessage` <br>
+- **Method Name** - `AddMessage` <br>
 - **Method** - `POST`            <br>
 - **URL Pattern** - `/api/v1/messages` <br>
-- **Usage** - CURL OR POSTMAN ONLY
-    - **Terminal/CURL**
-    ```sh
-    curl -X POST BASE_URL/messages
+- **Usage** - CURL OR POSTMAN
+    - **POSTMAN**
+    ```
+    URL: http://localhost:4000/api/v1/messages
+    Request: {"Message":"jaga"}
+    Response: {"ID":1,"Message":"jaga","IsMessagePalindrome":false}
     ```
 - **Expected Response** - JSON containig ID, Message, IsPalindrome (True or false to indicate if message is palindrome or not)
+- **Example**
+![Screenshot](/screenshots/Authentication-Request.png)
+
+### 4. Delete Message by ID
+
+- **Method Name** - `RemoveMessageByID` <br>
+- **Method** - `DELETE`            <br>
+- **URL Pattern** - `/api/v1/messages/3` <br>
+- **Usage** - CURL OR POSTMAN
+    - **POSTMAN**
+    ```
+    URL: http://localhost:4000/api/v1/messages/3
+    Request: {"ID":3, "Message":"todelete"}
+    Response: {}
+    ```
+- **Expected Response** - Empty JSON 
 - **Example**
 ![Screenshot](/screenshots/Authentication-Request.png)
 
