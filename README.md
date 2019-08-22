@@ -51,6 +51,15 @@ $ go build .
 Yay! Now we're ready to run the API :tada: <br>
 8. Open http://localhost:3000 in your browser to see the products.
 
+## Architecture
+For an easy understanding, use the structure below for every resource: 
+
+|Resource | GET | POST | PUT | DELETE |
+|:---:|:---:|:---:|:---:|:---:|
+|/messages | Returns a list of messages | Create a new message | Update of cars | Delete all messages
+| /messages/2 | Returns a specific message | Method not allowed (405) |Updates a specific message | Deletes a specific message
+
+
 ## API Documentation and Usage
 
 ### 1. View All Messages
