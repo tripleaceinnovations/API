@@ -44,13 +44,13 @@ You can also follow the official [docs](https://golang.org/doc/install) of insta
 
 1. Clone the repository in your `$GOPATH/src/` directory. If you have used the bash script for setup, your `$GOPATH` variable should point to `$HOME/go`
 2. Open Terminal and navigate to where the source is kept ``$GOPATH/src/api` directory.`
-7. To run the project, either build a Go code or create and run a docker image usig the docker compose file
+3. To run the project, either build a Go code or create and run a docker image usig the docker compose file
 ```
 // Build the go code
 $ go build .
 ```
 Yay! Now we're ready to run the API :tada: <br>
-8. Open http://localhost:3000 in your browser to see the products.
+4. Open http://localhost:3000 in your browser to see the products.
 
 ## Architecture
 For an easy understanding, use the structure below for every resource: 
@@ -87,7 +87,7 @@ For an easy understanding, use the structure below for every resource:
 - **Usage** - CURL OR POSTMAN
     - **POSTMAN**
 ```
- URL: http://localhost:4000/api/v1/messages/2
+ URL: http://localhost:3000/api/v1/messages/2
  Request: {"ID":2, "Message":"level"}
  Response: {"ID":2,"Message":"level","IsMessagePalindrome":true}
 ```
@@ -103,7 +103,7 @@ For an easy understanding, use the structure below for every resource:
 - **Usage** - CURL OR POSTMAN        
     - **POSTMAN**
     ```
-    URL: http://localhost:4000/api/v1/messages/2
+    URL: http://localhost:3000/api/v1/messages/2
     Request: {"ID":2, "Message":"level"}
     Response: {"ID":2,"Message":"level","IsMessagePalindrome":true}
     ```
@@ -119,7 +119,7 @@ For an easy understanding, use the structure below for every resource:
 - **Usage** - CURL OR POSTMAN
     - **POSTMAN**
     ```
-    URL: http://localhost:4000/api/v1/messages
+    URL: http://localhost:3000/api/v1/messages
     Request: {"Message":"jaga"}
     Response: {"ID":1,"Message":"jaga","IsMessagePalindrome":false}
     ```
@@ -135,7 +135,7 @@ For an easy understanding, use the structure below for every resource:
 - **Usage** - CURL OR POSTMAN
     - **POSTMAN**
     ```
-    URL: http://localhost:4000/api/v1/messages/3
+    URL: http://localhost:3000/api/v1/messages/3
     Request: {"ID":3, "Message":"todelete"}
     Response: {}
     ```
