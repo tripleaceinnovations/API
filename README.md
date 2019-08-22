@@ -1,5 +1,5 @@
-# Palindrome Application: Go (Golang)
-A simpe REST API that  manages messages and provides details about those
+# A Simple REST API for Palindrome
+A simpe REST API that manages messages and provides details about those
 messages, specifically whether or not a message is a palindrome.
 
 Application is written in Go Programming Language
