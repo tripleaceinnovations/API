@@ -48,6 +48,11 @@ To run this project, either build a Go code or create and run a docker image usi
 However, this endpoint would not been perpertually accessible due to cost implications on AWS. :-)
 
 
+## Integration with CI tool
+The api has been integrated with circleci for automated unit testing. Hence the reason for a .circleci directory found in the repository
+- **Example**
+![Screenshot](/screenshots/All-Products.png?raw=true)
+
 
 ## Architecture
 For an easy understanding and simplicity, the structure of the palindrome API is as stated below for every resource: 
