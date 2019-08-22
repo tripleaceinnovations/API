@@ -1,1 +1,1 @@
-# API
+# Palindrome Application: Go (Golang)
