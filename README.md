@@ -11,15 +11,15 @@ api/
     |- controllers/                - Contains main API logic files 
         |- interfacecontroller.go  - Defines methods handling calls and routing to endpoints
         |- messagecontroller.go    - handle the routing of http requests that comes into the server to the correct method
-    |- models/            - Contains main API logic files 
-        |- models.go      - Defines models for the application
-        |- models_test.go - Define test cases for testing
-    |- .gitignore
-    |- README.md
-    |- main.go             - Entry point of the API
-    |- Dockerfile          - Dockerfile to build docker images of the application
-    |- .circleci/          - Continuous Integration tool integration
-        |- config.yml      - Defines circleci configurations for automated tests
+    |- models/                     - Contains main API logic files 
+        |- models.go               - Defines models for the application
+        |- models_test.go          - Define test cases for testing
+    |- .gitignore                  - Files to ignore for git
+    |- README.md                   - README file for the project
+    |- main.go                     - Entry point of the API
+    |- Dockerfile                  - Dockerfile to build docker images of the application
+    |- .circleci/                  - Continuous Integration tool integration
+        |- config.yml              - Defines circleci configurations for automated tests
   
 ```
 
