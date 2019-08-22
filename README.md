@@ -3,7 +3,7 @@ A simpe REST API that manages messages and provides details about those
 messages, specifically whether or not a message is a palindrome.
 
 Application is written in Go Programming Language
-You can perform basic CRUD(CREATE, READ, UPDATE and DELETE) operations
+You can perform basic CRUD (CREATE, READ, UPDATE and DELETE) operations on the endpoint
 
 ## Directory Structure
 ```
@@ -24,36 +24,39 @@ api/
   
 ```
 
-## Setup
+### Project setup
 
-### Golang Development Setup
-
-You can use this bash script to automate the Golang development setup - https://github.com/canha/golang-tools-install-script
+To run this project, either build a Go code or create and run a docker image using the Dockerfile provided in thr source code. It is highly recommended to use the You can build and run the application using docker container.
 
 **Steps**
-1. Download the repository using wget 
-`wget https://raw.githubusercontent.com/canha/golang-tools-install-script/master/goinstall.sh`
-2. According to the OS you're on
-    - Linux 64 bit -> `bash goinstall.sh --64`
+1. Download and install Docker Desktop to setup docker on your system. You can follow the official link below for installation according to the OS:
+`https://www.docker.com/products/docker-desktop`
+
+2. Once docker is running, run the command below to download the latest image for the application from Dockerhub
+    - docker pull dexy004/rest-api:latest
+
+3. If you prefer to build the docker image locally, follow the steps stated below the command below to run the  the latest immage for the application from Dockerhub
+    - clone the github repository containing the source code
+    - Run the command `docker build -t <container_name>:<tag> . for example, docker build -t dexy004/rest-api:latest .` to build the docker image
+    - Run the command `docker run -p <portNo:portNo -it <container_name>:<tag> for example, docker run -p 3000:3000 -it dexy004/rest-api`
+
+4. Access the api on the url stated below
+     `http://localhost:8083/api/v1/messages`
+    - macOS -> `bash goinstall.sh --darwin`
+
+5. The api is also currently deployed on Kubernetes on AWS and can be assessed via the public endpoint stated below:
+     `http://a6fe44f17c4c511e9864a0a8eb5b4b53-1179921671.ap-southeast-1.elb.amazonaws.com:8083/api/v1/messages`
+However, this endpoint would not been perpertually accessible due to cost implications on AWS.
+
+2. Run the command below to run the  the latest immage for the application from Dockerhub
+    - docker pull dexy004/rest-api:latest
     - Linux 32 bit -> `bash goinstall.sh --32`
     - macOS -> `bash goinstall.sh --darwin`
 
-You can also follow the official [docs](https://golang.org/doc/install) of installation if you want to know the complete process.
 
-### Project setup
-
-1. Clone the repository in your `$GOPATH/src/` directory. If you have used the bash script for setup, your `$GOPATH` variable should point to `$HOME/go`
-2. Open Terminal and navigate to where the source is kept ``$GOPATH/src/api` directory.`
-3. To run the project, either build a Go code or create and run a docker image usig the docker compose file
-```
-// Build the go code
-$ go build .
-```
-Yay! Now we're ready to run the API :tada: <br>
-4. Open http://localhost:3000 in your browser to see the products.
 
 ## Architecture
-For an easy understanding, use the structure below for every resource: 
+For an easy understanding and simplicity, the structure of the palindrome API is as stated below for every resource: 
 
 |Resource | GET | POST | PUT | DELETE |
 |:---:|:---:|:---:|:---:|:---:|
