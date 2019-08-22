@@ -20,6 +20,7 @@ api/
     |- Dockerfile                  - Dockerfile to build docker images of the application
     |- .circleci/                  - Continuous Integration tool integration
         |- config.yml              - Defines circleci configurations for automated tests
+    |- screenshoots/               - Contains screenshots of test carried out on postman
   
 ```
 
@@ -126,7 +127,7 @@ For an easy understanding, use the structure below for every resource:
 - **Example**
 ![Screenshot](/screenshots/Authentication-Request.png)
 
-### 4. Delete Message by ID
+### 5. Delete Message by ID
 
 - **Method Name** - `RemoveMessageByID` <br>
 - **Method** - `DELETE`            <br>
