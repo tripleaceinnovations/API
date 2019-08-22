@@ -38,20 +38,14 @@ To run this project, either build a Go code or create and run a docker image usi
 3. If you prefer to build the docker image locally, follow the steps stated below the command below to run the  the latest immage for the application from Dockerhub
     - clone the github repository containing the source code
     - Run the command `docker build -t <container_name>:<tag> . for example, docker build -t dexy004/rest-api:latest .` to build the docker image
-    - Run the command `docker run -p <portNo:portNo -it <container_name>:<tag> for example, docker run -p 3000:3000 -it dexy004/rest-api`
+    - Run the command `docker run -p <portNo:portNo -it <container_name>:<tag> for example, docker run -p 8083:8083 -it dexy004/rest-api`
 
 4. Access the api on the url stated below
      `http://localhost:8083/api/v1/messages`
-    - macOS -> `bash goinstall.sh --darwin`
 
 5. The api is also currently deployed on Kubernetes on AWS and can be assessed via the public endpoint stated below:
      `http://a6fe44f17c4c511e9864a0a8eb5b4b53-1179921671.ap-southeast-1.elb.amazonaws.com:8083/api/v1/messages`
-However, this endpoint would not been perpertually accessible due to cost implications on AWS.
-
-2. Run the command below to run the  the latest immage for the application from Dockerhub
-    - docker pull dexy004/rest-api:latest
-    - Linux 32 bit -> `bash goinstall.sh --32`
-    - macOS -> `bash goinstall.sh --darwin`
+However, this endpoint would not been perpertually accessible due to cost implications on AWS. :-)
 
 
 
