@@ -3,6 +3,7 @@ package models
 import (
 	"errors"
 	"fmt"
+	"log"
 )
 
 type Phrase struct {
@@ -43,7 +44,7 @@ func GetMessageByID(id int) (Phrase, error) {
 		}
 
 	}
-
+	log.Println("... GetMessageByID: Validation failed for message ID: ")
 	return Phrase{}, fmt.Errorf("Message with ID '%v' not found", id)
 }
 
@@ -75,32 +76,19 @@ func RemoveMessageByID(id int) error {
 func IsPalindrome(input string) bool {
 	reversedinput = reverse(input)
 	if reversedinput != input {
-		//fmt.Println(input, "is a not palindrome")
+		log.Println("... input is a not palindrome: reversed input is ", reversedinput)
 		return false
 	} else {
-		//fmt.Println(input, "is a palindrome")
+		log.Println(" ... input is a palindrome: reversed input is ", reversedinput)
 		return true
 	}
 }
-
-/* func reverse(input string) string {
-	reg, _ := regexp.Compile("[^A-Za-z0-9]+")
-	value := reg.ReplaceAllString(input, "")
-	return strings.ToLower(strings.Trim(value, ""))
-} */
-
-/* func reverse(s string) string {
-	words := strings.Fields(s)
-	for i, j := 0, len(words)-1; i < j; i, j = i+1, j-1 {
-		words[i], words[j] = words[j], words[i]
-	}
-	return strings.Join(words, " ")
-} */
 
 func reverse(s string) string {
 	chars := []rune(s)
 	for i, j := 0, len(chars)-1; i < j; i, j = i+1, j-1 {
 		chars[i], chars[j] = chars[j], chars[i]
 	}
+	log.Println("... reversing the message: result is: ", string(chars))
 	return string(chars)
 }

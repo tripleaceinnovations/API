@@ -2,12 +2,10 @@ package models
 
 import (
 	"testing"
-	//"github.com/tripleaceinnovations/learngo/models"
 )
 
 //test for valid postive arguments
 func TestIsPalindromeValidPosArg(t *testing.T) {
-	//postiveresult := models.IsPalindrome("level")
 	postiveresult := IsPalindrome("level")
 
 	if postiveresult != true {
@@ -20,7 +18,6 @@ func TestIsPalindromeValidPosArg(t *testing.T) {
 
 //test for valid negative arguments
 func TestIsPalindromeValidNegArg(t *testing.T) {
-	//negativeresult := models.IsPalindrome("test")
 	negativeresult := IsPalindrome("test")
 
 	if negativeresult != false {
