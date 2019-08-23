@@ -55,11 +55,7 @@ However, this endpoint would not been perpertually accessible due to cost implic
 ## Brief Description of Architecture
 The Palindrome application is a simple REST-API written in Go Programming Language. It can be containerized with docker (Dockerfile to use is in this repository) and runs on docker containers that can be deployed locally and tested. The docker image for the palindrome rest-api is stored in Dockerhub as dexy004/rest-api:latest. Alternatively, the docker image has been deployed and tested on Elastic Kubernetes Service(EKS) on Amazon Web Services (AWS) Cloud Platform (API endpoint on AWS: `http://a6fe44f17c4c511e9864a0a8eb5b4b53-1179921671.ap-southeast-1.elb.amazonaws.com:8083/api/v1/messages`).
 
-<<<<<<< HEAD
 The Palindrome API can be tested using Postman to send HTTP requests. 
-=======
-The Palindrome API can tested using Postman to send HTTP requests. 
->>>>>>> 01a69d257e73b76f5d569df589d77784baf347e6
 The Palindrome API comprises 3 layers:
 ```
 Palindrun REST-API
@@ -72,13 +68,9 @@ Palindrun REST-API
         |- model.go
   
 ```
-<<<<<<< HEAD
 Request sent to the API is routed via the Server (main.go) to the interface controller which routes the request and decide which back controller(message controller) matches the handle methods defined.
 The interface controller (interfaceController.go) handles the routing of HTTP requests from api/v1/messages route and uses the controller object to route to the message controller for the request to be processed. The message controller (messageController.go) handles the routing of the corresponding http requests to the appropriate method by calling the model layer (models.go) to check if the request (message) is a palindrome and perform CRUD operations. Automated unit testing is done via the integration with CircleCI and leverages on package Testing of Go to run basic unit test cases.
-=======
-Request sent to the APi goes via the Server (main.go) to the interface controller which routes the request and decide which back controller(message controller) matches the handle methods defined.
-The interface controller (interfaceController.go) handles the routing of HTTP requests from api/v1/messages route and uses the controller object to route to the message controller for the request to be processed. The message controller (messageController.go) handles the routing of the corresponding http requests to the appropriate method by calling into the model layer (models.go) to check if the request (message) is a palindrome and perform CRUD operations. Automated unit testing is done via the integration with CircleCI and leverages on package Testing of Go to run basic unit test cases.
->>>>>>> 01a69d257e73b76f5d569df589d77784baf347e6
+
 
 For an easy understanding and simplicity, the structure of the palindrome REST-API is as stated below: 
 
