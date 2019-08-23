@@ -20,5 +20,5 @@ RUN ls -latr
 # run the api
 CMD ["/app/main"]
 
-#use port 3000
-EXPOSE 3000
+#use port 8083
+EXPOSE 8083

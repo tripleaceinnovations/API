@@ -5,6 +5,7 @@ messages, specifically whether or not a message is a palindrome.
 Application is written in Go Programming Language
 You can perform basic CRUD (CREATE, READ, UPDATE and DELETE) operations on the endpoint
 
+
 ## Directory Structure
 ```
 api/
@@ -24,9 +25,10 @@ api/
   
 ```
 
+
 ### Project setup
 
-To run this project, either build a Go code or create and run a docker image using the Dockerfile provided in thr source code. It is highly recommended to use the You can build and run the application using docker container.
+To run this project, either build a Go code or create and run a docker image using the Dockerfile provided in the source code. It is highly recommended to use the You can build and run the application using docker container.
 
 **Steps**
 1. Download and install Docker Desktop to setup docker on your system. You can follow the official link below for installation according to the OS:
@@ -38,20 +40,23 @@ To run this project, either build a Go code or create and run a docker image usi
 3. If you prefer to build the docker image locally, follow the steps stated below the command below to run the  the latest immage for the application from Dockerhub
     - clone the github repository containing the source code
     - Run the command `docker build -t <container_name>:<tag> . for example, docker build -t dexy004/rest-api:latest .` to build the docker image
-    - Run the command `docker run -p <portNo:portNo -it <container_name>:<tag> for example, docker run -p 8083:8083 -it dexy004/rest-api`
+    - Run the command `docker run -p <portNo:portNo -it <container_name>:<tag> for example, docker run -p 3000:3000 -it dexy004/rest-api`
 
-4. Access the api on the url stated below
-     `http://localhost:8083/api/v1/messages`
+4. Access the api on the url stated on your local environment
+     `http://localhost:3000/api/v1/messages`
 
 5. The api is also currently deployed on Kubernetes on AWS and can be assessed via the public endpoint stated below:
      `http://a6fe44f17c4c511e9864a0a8eb5b4b53-1179921671.ap-southeast-1.elb.amazonaws.com:8083/api/v1/messages`
 However, this endpoint would not been perpertually accessible due to cost implications on AWS. :-)
+- **Example**
+![Screenshot](/screenshots/All-Products.png?raw=true)
 
 
 ## Integration with CI tool
 The api has been integrated with circleci for automated unit testing. Hence the reason for a .circleci directory found in the repository
 - **Example**
 ![Screenshot](/screenshots/All-Products.png?raw=true)
+
 
 
 ## Architecture
@@ -61,6 +66,7 @@ For an easy understanding and simplicity, the structure of the palindrome API is
 |:---:|:---:|:---:|:---:|:---:|
 |/messages | Returns a list of messages | Create a new message | Method not allowed (405) | Delete all messages
 | /messages/2 | Returns a specific message | Method not allowed (405) |Updates a specific message | Deletes a specific message
+
 
 
 ## API Documentation and Usage
@@ -74,12 +80,12 @@ For an easy understanding and simplicity, the structure of the palindrome API is
     - **POSTMAN**
     ```
     URL: http://localhost:3000/api/v1/messages
-    Request: Not required
-    Response: [{"ID":1,"Message":"jaga","IsMessagePalindrome":false}, {"ID":2,"Message":"level","IsMessagePalindrome":true}]}
+    Sample Request: Not required
+    Sample Response: [{"ID":1,"Message":"level","IsMessagePalindrome":true},{"ID":2,"Message":"bash","IsMessagePalindrome":false},{"ID":3,"Message":"walnut","IsMessagePalindrome":false}]
     ```
 - **Expected Response** - JSON containing all the messages <br>
 - **Example**
-![Screenshot](/screenshots/All-Products.png?raw=true)
+![Screenshot](/screenshots/GET-Request.png?raw=true)
 
 ### 2. View Messages by ID
 
@@ -90,12 +96,12 @@ For an easy understanding and simplicity, the structure of the palindrome API is
     - **POSTMAN**
 ```
  URL: http://localhost:3000/api/v1/messages/2
- Request: {"ID":2, "Message":"level"}
- Response: {"ID":2,"Message":"level","IsMessagePalindrome":true}
+ Sample Request: Not required
+ Sample Response: {"ID":2,"Message":"bash","IsMessagePalindrome":false}
 ```
 - **Expected Response** - JSON containing message based on the {id} provided
 - **Example**
-![Screenshot](/screenshots/GetProduct-Request.png)
+![Screenshot](/screenshots/GetByID-Request.png)
 
 ### 3. Update Message
 
@@ -106,12 +112,12 @@ For an easy understanding and simplicity, the structure of the palindrome API is
     - **POSTMAN**
     ```
     URL: http://localhost:3000/api/v1/messages/2
-    Request: {"ID":2, "Message":"level"}
-    Response: {"ID":2,"Message":"level","IsMessagePalindrome":true}
+    Request: {"ID":2, "Message":"radar"}
+    Response: {"ID":2,"Message":"radar","IsMessagePalindrome":true}
     ```
-- **Expected Response** - JSON containing message matching the update value and check if the message is palindrome <br>
+- **Expected Response** - JSON containing message matching the update value (radar) and check if the message is palindrome <br>
 - **Example**
-![Screenshot](/screenshots/Search-Request.png)
+![Screenshot](/screenshots/PUT-Request.png)
 
 ### 4. Add Message
 
@@ -122,12 +128,12 @@ For an easy understanding and simplicity, the structure of the palindrome API is
     - **POSTMAN**
     ```
     URL: http://localhost:3000/api/v1/messages
-    Request: {"Message":"jaga"}
-    Response: {"ID":1,"Message":"jaga","IsMessagePalindrome":false}
+    Request: {"Message":"level"}
+    Response: {"ID":1,"Message":"level","IsMessagePalindrome":true}
     ```
 - **Expected Response** - JSON containig ID, Message, IsPalindrome (True or false to indicate if message is palindrome or not)
 - **Example**
-![Screenshot](/screenshots/Authentication-Request.png)
+![Screenshot](/screenshots/POST-Request.png)
 
 ### 5. Delete Message by ID
 
@@ -138,10 +144,10 @@ For an easy understanding and simplicity, the structure of the palindrome API is
     - **POSTMAN**
     ```
     URL: http://localhost:3000/api/v1/messages/3
-    Request: {"ID":3, "Message":"todelete"}
+    Request: {"ID":3}
     Response: {}
     ```
 - **Expected Response** - Empty JSON 
 - **Example**
-![Screenshot](/screenshots/Authentication-Request.png)
+![Screenshot](/screenshots/DELETE-Request.png)
 
