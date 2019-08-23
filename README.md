@@ -49,13 +49,13 @@ To run this project, either build a Go code or create and run a docker image usi
      `http://a6fe44f17c4c511e9864a0a8eb5b4b53-1179921671.ap-southeast-1.elb.amazonaws.com:8083/api/v1/messages`
 However, this endpoint would not been perpertually accessible due to cost implications on AWS. :-)
 - **Example**
-![Screenshot](/screenshots/All-Products.png?raw=true)
+![Screenshot](/screenshots/AWS-Request.png?raw=true)
 
 
 ## Integration with CI tool
 The api has been integrated with circleci for automated unit testing. Hence the reason for a .circleci directory found in the repository
 - **Example**
-![Screenshot](/screenshots/All-Products.png?raw=true)
+![Screenshot](/screenshots/Circleci.png?raw=true)
 
 
 
