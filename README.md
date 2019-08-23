@@ -27,7 +27,7 @@ api/
 
 ### Project setup
 
-To run this project, either build a Go code or create and run a docker image using the Dockerfile provided in the source code. It is highly recommended to use the You can build and run the application using docker container.
+To run this project, either build a Go code or create and run a docker image using the Dockerfile provided in the source code. It is highly recommended to build and run the application using docker container.
 
 **Steps**
 1. Download and install Docker Desktop to setup docker on your system. You can follow the official link below for installation according to the OS:
