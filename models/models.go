@@ -4,6 +4,8 @@ import (
 	"errors"
 	"fmt"
 	"log"
+	"strings"
+	"unicode/utf8"
 )
 
 type Phrase struct {
@@ -15,7 +17,7 @@ type Phrase struct {
 var (
 	phrases       []*Phrase
 	nextID        = 1
-	reversedinput string
+	verifiedInput string
 )
 
 func GetMessages() []*Phrase {
@@ -27,14 +29,13 @@ func AddMessage(p Phrase) (Phrase, error) {
 		return Phrase{}, errors.New("New message must not include ID in the request")
 	}
 	p.ID = nextID
-	if len(p.Message) != 0 {
+	if len(strings.TrimSpace(strings.ToUpper(p.Message))) != 0 {
 		p.IsMessagePalindrome = IsPalindrome(p.Message)
 		nextID++
 		phrases = append(phrases, &p)
 		return p, nil
-	} else {
-		return Phrase{}, errors.New("New message cannot be empty")
 	}
+	return Phrase{}, errors.New("New message cannot be empty")
 }
 
 func GetMessageByID(id int) (Phrase, error) {
@@ -51,13 +52,12 @@ func GetMessageByID(id int) (Phrase, error) {
 func UpdateMessage(p Phrase) (Phrase, error) {
 	for i, candidate := range phrases {
 		if candidate.ID == p.ID {
-			if len(p.Message) != 0 {
+			if len(strings.TrimSpace(strings.ToUpper(p.Message))) != 0 {
 				p.IsMessagePalindrome = IsPalindrome(p.Message)
 				phrases[i] = &p
 				return p, nil
-			} else {
-				return Phrase{}, errors.New("Message to be updated cannot be empty")
 			}
+			return Phrase{}, errors.New("Message to be updated cannot be empty")
 		}
 	}
 	return Phrase{}, fmt.Errorf("Message with ID '%v' not found", p.ID)
@@ -83,21 +83,25 @@ func RemoveAllMessages() error {
 }
 
 func IsPalindrome(input string) bool {
-	reversedinput = reverse(input)
-	if reversedinput != input {
-		log.Println("... input is a not palindrome: reversed input is ", reversedinput)
+	input = strings.TrimSpace(strings.ToUpper(input))
+	verifiedInput = Verify(input)
+	if verifiedInput != input {
+		log.Println("... input is a not palindrome: reversed input is ", verifiedInput)
 		return false
 	} else {
-		log.Println(" ... input is a palindrome: reversed input is ", reversedinput)
+		log.Println(" ... input is a palindrome: reversed input is ", verifiedInput)
 		return true
 	}
 }
 
-func reverse(s string) string {
-	chars := []rune(s)
-	for i, j := 0, len(chars)-1; i < j; i, j = i+1, j-1 {
-		chars[i], chars[j] = chars[j], chars[i]
+func Verify(s string) string {
+	inputLength := len(s)
+	buffer := make([]byte, inputLength)
+	for k := 0; k < inputLength; {
+		j, size := utf8.DecodeRuneInString(s[k:])
+		k += size
+		utf8.EncodeRune(buffer[inputLength-k:], j)
 	}
-	log.Println("... reversing the message: result is: ", string(chars))
-	return string(chars)
+	log.Println("... reversing the message: result is: ", string(buffer))
+	return string(buffer)
 }

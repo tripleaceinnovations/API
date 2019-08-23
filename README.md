@@ -1,6 +1,6 @@
 # A Simple REST API for Palindrome
 A simpe REST API that manages messages and provides details about those
-messages, specifically whether or not a message is a palindrome.
+messages, specifically whether or not a word is a palindrome.
 
 Application is written in Go Programming Language
 You can perform basic CRUD (CREATE, READ, UPDATE and DELETE) operations on the endpoint
