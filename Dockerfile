@@ -1,26 +1,20 @@
-# We specify the base image we need for our
-# go application
+# use golang base image
 FROM golang:1.12.0-alpine3.9
-# We create an /app directory within our
-# image that will hold our application source
-# files
+
+# create an /app directory for source code
 RUN mkdir /app
-# We copy everything in the root directory
-# into our /app directory
+
+# copy source code int /app directory
 ADD . /app
 
-RUN ls -latr
-# We specify that we now wish to execute 
-# any further commands inside our /app
-# directory
+# specify work directory
 WORKDIR /app
-# we run go build to compile the binary
-# executable of our Go program
+
+# run go build to compile the binary executable
 RUN go build -o main .
 
-RUN ls -latr
-# Our start command which kicks off
-# our newly created binary executable
+# run the api
 CMD ["/app/main"]
 
+#use port 8083
 EXPOSE 8083

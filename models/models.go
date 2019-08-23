@@ -3,6 +3,9 @@ package models
 import (
 	"errors"
 	"fmt"
+	"log"
+	"strings"
+	"unicode/utf8"
 )
 
 type Phrase struct {
@@ -14,7 +17,7 @@ type Phrase struct {
 var (
 	phrases       []*Phrase
 	nextID        = 1
-	reversedinput string
+	verifiedInput string
 )
 
 func GetMessages() []*Phrase {
@@ -26,10 +29,13 @@ func AddMessage(p Phrase) (Phrase, error) {
 		return Phrase{}, errors.New("New message must not include ID in the request")
 	}
 	p.ID = nextID
-	p.IsMessagePalindrome = IsPalindrome(p.Message)
-	nextID++
-	phrases = append(phrases, &p)
-	return p, nil
+	if len(strings.TrimSpace(strings.ToUpper(p.Message))) != 0 {
+		p.IsMessagePalindrome = IsPalindrome(p.Message)
+		nextID++
+		phrases = append(phrases, &p)
+		return p, nil
+	}
+	return Phrase{}, errors.New("New message cannot be empty")
 }
 
 func GetMessageByID(id int) (Phrase, error) {
@@ -39,16 +45,19 @@ func GetMessageByID(id int) (Phrase, error) {
 		}
 
 	}
-
+	log.Println("... GetMessageByID: Validation failed for message ID: ")
 	return Phrase{}, fmt.Errorf("Message with ID '%v' not found", id)
 }
 
 func UpdateMessage(p Phrase) (Phrase, error) {
 	for i, candidate := range phrases {
 		if candidate.ID == p.ID {
-			p.IsMessagePalindrome = IsPalindrome(p.Message)
-			phrases[i] = &p
-			return p, nil
+			if len(strings.TrimSpace(strings.ToUpper(p.Message))) != 0 {
+				p.IsMessagePalindrome = IsPalindrome(p.Message)
+				phrases[i] = &p
+				return p, nil
+			}
+			return Phrase{}, errors.New("Message to be updated cannot be empty")
 		}
 	}
 	return Phrase{}, fmt.Errorf("Message with ID '%v' not found", p.ID)
@@ -64,35 +73,35 @@ func RemoveMessageByID(id int) error {
 	return fmt.Errorf("Message with ID '%v' not found", id)
 }
 
+func RemoveAllMessages() error {
+	for i := range phrases {
+		phrases = append(phrases[:i], phrases[:i]...)
+		log.Println("... deleting all messages. phrases is now:", phrases)
+		return nil
+	}
+	return fmt.Errorf("Message '%v' was not deleted", phrases)
+}
+
 func IsPalindrome(input string) bool {
-	reversedinput = reverse(input)
-	if reversedinput != input {
-		//fmt.Println(input, "is a not palindrome")
+	input = strings.TrimSpace(strings.ToUpper(input))
+	verifiedInput = Verify(input)
+	if verifiedInput != input {
+		log.Println("... input is a not palindrome: reversed input is ", verifiedInput)
 		return false
 	} else {
-		//fmt.Println(input, "is a palindrome")
+		log.Println(" ... input is a palindrome: reversed input is ", verifiedInput)
 		return true
 	}
 }
 
-/* func reverse(input string) string {
-	reg, _ := regexp.Compile("[^A-Za-z0-9]+")
-	value := reg.ReplaceAllString(input, "")
-	return strings.ToLower(strings.Trim(value, ""))
-} */
-
-/* func reverse(s string) string {
-	words := strings.Fields(s)
-	for i, j := 0, len(words)-1; i < j; i, j = i+1, j-1 {
-		words[i], words[j] = words[j], words[i]
+func Verify(s string) string {
+	inputLength := len(s)
+	buffer := make([]byte, inputLength)
+	for k := 0; k < inputLength; {
+		j, size := utf8.DecodeRuneInString(s[k:])
+		k += size
+		utf8.EncodeRune(buffer[inputLength-k:], j)
 	}
-	return strings.Join(words, " ")
-} */
-
-func reverse(s string) string {
-	chars := []rune(s)
-	for i, j := 0, len(chars)-1; i < j; i, j = i+1, j-1 {
-		chars[i], chars[j] = chars[j], chars[i]
-	}
-	return string(chars)
+	log.Println("... reversing the message: result is: ", string(buffer))
+	return string(buffer)
 }
