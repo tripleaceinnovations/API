@@ -1,21 +1,17 @@
-# Using golang base image
+# use golang base image
 FROM golang:1.12.0-alpine3.9
 
-# We create an /app directory for source code
+# create an /app directory for source code
 RUN mkdir /app
 
-# Copying source code int /app directory
+# copy source code int /app directory
 ADD . /app
 
-RUN ls -latr
-
-# work directory
+# specify work directory
 WORKDIR /app
 
-# run go build to compile the binary executable of our Go program
+# run go build to compile the binary executable
 RUN go build -o main .
-
-RUN ls -latr
 
 # run the api
 CMD ["/app/main"]

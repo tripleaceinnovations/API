@@ -7,9 +7,7 @@ import (
 	"net/http"
 )
 
-// This interface will handle all the routing in the emtire app
-// When network request is received, it will go o the correct controller to be processed
-
+// This interface will handle all the routing in the entire app
 func RegisterControllers() {
 	mc := newMessageController()
 	http.Handle("/api/v1/messages", *mc)
@@ -17,7 +15,7 @@ func RegisterControllers() {
 	log.Println("... interface handler ...")
 }
 
-//takes the user oject and convert it to json representation
+//takes the message oject and convert it to json representation
 func encodeResponseAsJSON(data interface{}, w io.Writer) {
 	json.NewEncoder(w).Encode(data)
 	log.Println("... JSON Encoding completed ...")

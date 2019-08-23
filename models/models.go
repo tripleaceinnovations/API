@@ -73,6 +73,15 @@ func RemoveMessageByID(id int) error {
 	return fmt.Errorf("Message with ID '%v' not found", id)
 }
 
+func RemoveAllMessages() error {
+	for i := range phrases {
+		phrases = append(phrases[:i], phrases[:i]...)
+		log.Println("... deleting all messages. phrases is now:", phrases)
+		return nil
+	}
+	return fmt.Errorf("Message '%v' was not deleted", phrases)
+}
+
 func IsPalindrome(input string) bool {
 	reversedinput = reverse(input)
 	if reversedinput != input {

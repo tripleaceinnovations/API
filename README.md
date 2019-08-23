@@ -45,7 +45,7 @@ To run this project, either build a Go code or create and run a docker image usi
 4. Access the api on the url stated on your local environment
      `http://localhost:3000/api/v1/messages`
 
-5. The api is also currently deployed on Kubernetes on AWS and can be assessed via the public endpoint stated below:
+5. The api is also currently deployed on Elastic Kubernetes Service(EKS) on AWS and can be assessed via the public endpoint stated below:
      `http://a6fe44f17c4c511e9864a0a8eb5b4b53-1179921671.ap-southeast-1.elb.amazonaws.com:8083/api/v1/messages`
 However, this endpoint would not been perpertually accessible due to cost implications on AWS. :-)
 - **Example**
@@ -59,13 +59,15 @@ The api has been integrated with circleci for automated unit testing. Hence the 
 
 
 
-## Architecture
+## Brief Description of Architecture
+
 For an easy understanding and simplicity, the structure of the palindrome API is as stated below for every resource: 
 
 |Resource | GET | POST | PUT | DELETE |
 |:---:|:---:|:---:|:---:|:---:|
 |/messages | Returns a list of messages | Create a new message | Method not allowed (405) | Delete all messages
 | /messages/2 | Returns a specific message | Method not allowed (405) |Updates a specific message | Deletes a specific message
+
 
 
 
@@ -151,3 +153,19 @@ For an easy understanding and simplicity, the structure of the palindrome API is
 - **Example**
 ![Screenshot](/screenshots/DELETE-Request.PNG)
 
+
+### 6. Delete All Messages
+
+- **Method Name** - `RemoveAllMessages` <br>
+- **Method** - `DELETE`            <br>
+- **URL Pattern** - `/api/v1/messages` <br>
+- **Usage** - CURL OR POSTMAN
+    - **POSTMAN**
+    ```
+    URL: http://localhost:3000/api/v1/messages
+    Request: not required
+    Response: {}
+    ```
+- **Expected Response** - Empty JSON 
+- **Example**
+![Screenshot](/screenshots/DELETEALL-Request.PNG)

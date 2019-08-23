@@ -11,13 +11,12 @@ import (
 	"github.com/tripleaceinnovations/api/models"
 )
 
-// Handles requests on message collection and request to manipulate messages
 // Uses regular expression to match incoming http request
 type messageController struct {
 	messageIDPattern *regexp.Regexp
 }
 
-// Creating a function and making it a method (ServeHTTP) by specifying the type which the function binds
+// Creating a function and making it a method (ServeHTTP) by specifying the type which the function binds to
 func (mc messageController) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	if r.URL.Path == "/api/v1/messages" {
 		switch r.Method {
@@ -25,6 +24,8 @@ func (mc messageController) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 			mc.getAll(w, r)
 		case http.MethodPost:
 			mc.post(w, r)
+		case http.MethodDelete:
+			mc.deleteAll(w)
 		default:
 			w.WriteHeader(http.StatusMethodNotAllowed)
 			log.Println("... HTTP method used is not allowed here ...")
@@ -60,7 +61,6 @@ func (mc *messageController) getAll(w http.ResponseWriter, r *http.Request) {
 	encodeResponseAsJSON(models.GetMessages(), w)
 }
 
-//get method will get the id of the resource we gonna be workin with, accept the response writer from the serveHTTP method,
 func (mc *messageController) get(id int, w http.ResponseWriter) {
 	log.Println("...GET: calling GetMessageByID ...")
 	m, err := models.GetMessageByID(id)
@@ -123,7 +123,17 @@ func (mc *messageController) delete(id int, w http.ResponseWriter) {
 	w.WriteHeader(http.StatusOK)
 }
 
-//This will take any request coming in e.g update request and convert it into a msg object we can work with
+func (mc *messageController) deleteAll(w http.ResponseWriter) {
+	err := models.RemoveAllMessages()
+	if err != nil {
+		w.WriteHeader(http.StatusInternalServerError)
+		w.Write([]byte(err.Error()))
+		return
+	}
+	w.WriteHeader(http.StatusOK)
+}
+
+//This will take any incoming request and convert it into a msg object we can work with
 func (mc *messageController) parseRequest(r *http.Request) (models.Phrase, error) {
 	dec := json.NewDecoder(r.Body)
 	var u models.Phrase

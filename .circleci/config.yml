@@ -4,7 +4,6 @@ version: 2
 jobs:
   build:
     docker:
-      # specify the version
       - image: circleci/golang:1.9
 
     working_directory: /go/src/github.com/tripleaceinnovations/api/

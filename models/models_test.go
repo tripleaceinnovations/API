@@ -4,7 +4,7 @@ import (
 	"testing"
 )
 
-//test for valid postive arguments
+//test for valid postive argument
 func TestIsPalindromeValidPosArg(t *testing.T) {
 	postiveresult := IsPalindrome("level")
 
@@ -16,7 +16,7 @@ func TestIsPalindromeValidPosArg(t *testing.T) {
 
 }
 
-//test for valid negative arguments
+//test for valid negative argument
 func TestIsPalindromeValidNegArg(t *testing.T) {
 	negativeresult := IsPalindrome("test")
 
