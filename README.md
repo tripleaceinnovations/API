@@ -49,13 +49,13 @@ To run this project, either build a Go code or create and run a docker image usi
      `http://a6fe44f17c4c511e9864a0a8eb5b4b53-1179921671.ap-southeast-1.elb.amazonaws.com:8083/api/v1/messages`
 However, this endpoint would not been perpertually accessible due to cost implications on AWS. :-)
 - **Example**
-![Screenshot](/screenshots/AWS-Request.png?raw=true)
+![Screenshot](/screenshots/AWS-Request.PNG?raw=true)
 
 
 ## Integration with CI tool
 The api has been integrated with circleci for automated unit testing. Hence the reason for a .circleci directory found in the repository
 - **Example**
-![Screenshot](/screenshots/Circleci.png?raw=true)
+![Screenshot](/screenshots/circleci.PNG?raw=true)
 
 
 
@@ -85,7 +85,7 @@ For an easy understanding and simplicity, the structure of the palindrome API is
     ```
 - **Expected Response** - JSON containing all the messages <br>
 - **Example**
-![Screenshot](/screenshots/GET-Request.png?raw=true)
+![Screenshot](/screenshots/GET-Request.PNG?raw=true)
 
 ### 2. View Messages by ID
 
@@ -101,7 +101,7 @@ For an easy understanding and simplicity, the structure of the palindrome API is
 ```
 - **Expected Response** - JSON containing message based on the {id} provided
 - **Example**
-![Screenshot](/screenshots/GetByID-Request.png)
+![Screenshot](/screenshots/GetByID-Request.PNG)
 
 ### 3. Update Message
 
@@ -117,7 +117,7 @@ For an easy understanding and simplicity, the structure of the palindrome API is
     ```
 - **Expected Response** - JSON containing message matching the update value (radar) and check if the message is palindrome <br>
 - **Example**
-![Screenshot](/screenshots/PUT-Request.png)
+![Screenshot](/screenshots/PUT-Request.PNG)
 
 ### 4. Add Message
 
@@ -133,7 +133,7 @@ For an easy understanding and simplicity, the structure of the palindrome API is
     ```
 - **Expected Response** - JSON containig ID, Message, IsPalindrome (True or false to indicate if message is palindrome or not)
 - **Example**
-![Screenshot](/screenshots/POST-Request.png)
+![Screenshot](/screenshots/POST-Request.PNG)
 
 ### 5. Delete Message by ID
 
@@ -149,5 +149,5 @@ For an easy understanding and simplicity, the structure of the palindrome API is
     ```
 - **Expected Response** - Empty JSON 
 - **Example**
-![Screenshot](/screenshots/DELETE-Request.png)
+![Screenshot](/screenshots/DELETE-Request.PNG)
 
