@@ -88,10 +88,9 @@ func IsPalindrome(input string) bool {
 	if verifiedInput != input {
 		log.Println("... input is a not palindrome: reversed input is ", verifiedInput)
 		return false
-	} else {
-		log.Println(" ... input is a palindrome: reversed input is ", verifiedInput)
-		return true
 	}
+	log.Println(" ... input is a palindrome: reversed input is ", verifiedInput)
+	return true
 }
 
 func Verify(s string) string {

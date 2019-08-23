@@ -18,5 +18,5 @@ func RegisterControllers() {
 //takes the message oject and convert it to json representation
 func encodeResponseAsJSON(data interface{}, w io.Writer) {
 	json.NewEncoder(w).Encode(data)
-	log.Println("... JSON Encoding completed ...")
+	log.Println("... JSON Encoding completed sucessfully ...")
 }
