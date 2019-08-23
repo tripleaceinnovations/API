@@ -66,7 +66,6 @@ Palindrun REST-API
         |- messagecontroller.go
     |- Model Layer
         |- model.go
-        |- messagecontroller.g
   
 ```
 Request sent to the APi goes via the Server (main.go) to the interface controller which routes the request and decide which back controller(message controller) matches the handle methods defined.
