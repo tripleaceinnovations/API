@@ -101,7 +101,7 @@ For an easy understanding and simplicity, the structure of the palindrome API is
 ```
 - **Expected Response** - JSON containing message based on the {id} provided
 - **Example**
-![Screenshot](/screenshots/GetByID-Request.PNG)
+![Screenshot](/screenshots/GETByID-Request.PNG)
 
 ### 3. Update Message
 
