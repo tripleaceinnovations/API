@@ -8,11 +8,11 @@ node {
         app = docker.build("dexy/api01")
     }
 
-    stage('Testing app') {
+    /*stage('Testing app') {
         app.inside {
             echo "Test Passed"
         }
-    }
+    } */
 
     stage('Pushing Image') {
         docker.withRegisty('https://registry.hub.docker.com', 'mydocker-hub-credential') {
