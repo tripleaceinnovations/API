@@ -1,30 +1,25 @@
-pipeline {
-    environment {
-        registry = "dexy004/api01"
-        registryCredential = "dexy004"
-
+node {
+    def app
+    stage('Cloning repo') {
+        checkout scm
     }
-    agent any
-    stages {
-        stage('cloning repo'){
-            steps {git clone "https://github.com/tripleaceinnovations/API.git"
 
-            }
+    stage('Building image') {
+        app = docker.build("dexy/api01")
+    }
+
+    stage('Testing app') {
+        app.inside {
+            echo "Test Passed"
         }
-        stage('Building image'){
-            steps {
-                script {
-                    dockerImage = docker.build registry
-                }
-            }
+    }
+
+    stage('Pushing Image') {
+        docker.withRegisty('https://registry.hub.docker.com', 'docker-hub') {
+            app.push("${env.BUILD_NUMBER}")
+            app.push("latest")
         }
-        stage('Push to registry') {
-            steps {
-                script {
-                    docker.WithRegistry('', registryCredential)
-                    dockerImage.push()
-                }
-            }
-        }
+        echo "Pushing image to docker registry"
+    }
 
 }
