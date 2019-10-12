@@ -5,7 +5,7 @@ node {
     }
 
     stage('Building image') {
-        app = docker.build("dexy/api01")
+        app = docker.build("dexy004/api01")
     }
 
     stage('Testing app') {
